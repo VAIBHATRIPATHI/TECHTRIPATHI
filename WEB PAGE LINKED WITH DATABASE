@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+  <title>ARYOGYA YANTRA</title>
+   <meta http-equiv="refresh" content="10">
+
+  <style>
+    h1{text-align: center;
+    color:darkblue;
+    ;
+  font-size: 50}
+  #first_head{ }
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  </style>
+
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      //DATABASE SECRETS
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script>
+
+
+  var database = firebase.database();
+  database.ref('HEALTH_CHECK').once('value', function(snapshot){
+      if(snapshot.exists()){
+          var content = '';
+          snapshot.forEach(function(data){
+              var val = data.val();
+              content +='<tr>';
+              content += '<td>' + val.NAME + '</td>';
+              content += '<td>' + val.HEART + '</td>';
+              content += '<td>' + val.OXYGEN + '</td>';
+              content += '<td>' + val.TEMP + '</td>';
+              content += '</tr>';
+          });
+          $('#table1').append(content);
+      }
+  });
+  </script>
+</head>
+<body>
+
+  <div class="jumbotron text-center" >
+    <h1>AAROGYA YANTRA</h1>
+    <p>PROVIDING COMPLETE SOLUTION OF ISOLATION FOR ISOLATION</p>
+
+  </div>
+  <h1 id="first_head">HEALTH MONITOR</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 well">
+        <h3>MONITOR</h3>
+        <p> monitor patients remotely</p>
+        <img src="monitor.jpg" height="300" width="350">
+      </div>
+      <div class="col-sm-4 well">
+        <h3>TREAT</h3>
+        <p>treat patients effectively</p>
+        <img src="treat.jpg" height="300" width="350">
+      </div>
+      <div class="col-sm-4 well">
+        <h3>PROTECT</h3>
+        <p>protect frontline workers</p>
+        <img src="maintain.jpg" height="300" width="350">
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <table class="table table-hover" id="table1">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>HEART</th>
+        <th>OXYGEN</th>
+        <th>TEMP</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+  </table>
+<!--<img src="anshita.jpeg" alt="mylove" alt="anshita" height="500" width="500">-->
+
+</div>
+
+</body>
